@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Function scope example</title>
+  </head>
+<body>
+<script>
+    function getComputerChoice(zeco){
+    let azuz=['Rock','Paper','Scissor']
+    let random=Math.floor(Math.random()*azuz.length);
+    azuz[random]
+  }
+  getComputerChoice();
+  function playround(playerSelection,computerSelection){
+    if (computerSelection=="Scissor" && playerSelection=="Rock"){
+      console.log("BIG W, ROCK BREAKS THE SCISSOR")
+      
+    }
+    if(computerSelection=="Rock" && playerSelection=="Scissor"){
+      console.log("RARE L, ROCK BREAKS THE SCISSOR")
+    }
+    if(computerSelection=="Rock" && playerSelection=="Rock"){
+      console.log("DRAW")
+    }
+    if(computerSelection=="Scissor" && playerSelection=="Scissor"){
+      console.log("DRAW")
+    }
+    if(computerSelection=="Paper" && playerSelection=="Paper"){
+      console.log("DRAW")
+    }
+    if(computerSelection=="Rock" && playerSelection=="Paper"){
+      console.log("BIG W, ROCK IS WRAPPED BY THE PAPER")
+    }
+    if(computerSelection=="Paper" && playerSelection=="Rock"){
+      console.log("RARE L, ROCK IS WRAPPED BY THE PAPER")
+    }
+    if(computerSelection=="Paper" && playerSelection=="Scissor"){
+      console.log("BIG W, SCISSOR CUTS THE PAPER")
+    }
+    if(computerSelection=="Scissor" && playerSelection=="Paper"){
+      console.log("RARE L, SCISSOR CUTS THE PAPER")
+    }
+  }
+  function game (){
+    playround()
+
+    for (let i = 0; i < 5; i++){
+      playerSelection = prompt("Rock, Paper, or Scissor?").toLowerCase();
+      computerSelection=getComputerChoice()
+        console.log(playRound(computerSelection , playerSelection)); 
+  
+      }
+    }
+   
+
+  
+   
+</script>
+
+</body>
+</html>
