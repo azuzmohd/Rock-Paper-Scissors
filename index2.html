@@ -1,63 +1,107 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Function scope example</title>
-  </head>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Page Title</title>
+</head>
 <body>
-<script>
-    function getComputerChoice(zeco){
-    let azuz=['Rock','Paper','Scissor']
-    let random=Math.floor(Math.random()*azuz.length);
-    azuz[random]
-  }
-  getComputerChoice();
-  function playround(playerSelection,computerSelection){
-    if (computerSelection=="Scissor" && playerSelection=="Rock"){
-      console.log("BIG W, ROCK BREAKS THE SCISSOR")
-      
-    }
-    if(computerSelection=="Rock" && playerSelection=="Scissor"){
-      console.log("RARE L, ROCK BREAKS THE SCISSOR")
-    }
-    if(computerSelection=="Rock" && playerSelection=="Rock"){
-      console.log("DRAW")
-    }
-    if(computerSelection=="Scissor" && playerSelection=="Scissor"){
-      console.log("DRAW")
-    }
-    if(computerSelection=="Paper" && playerSelection=="Paper"){
-      console.log("DRAW")
-    }
-    if(computerSelection=="Rock" && playerSelection=="Paper"){
-      console.log("BIG W, ROCK IS WRAPPED BY THE PAPER")
-    }
-    if(computerSelection=="Paper" && playerSelection=="Rock"){
-      console.log("RARE L, ROCK IS WRAPPED BY THE PAPER")
-    }
-    if(computerSelection=="Paper" && playerSelection=="Scissor"){
-      console.log("BIG W, SCISSOR CUTS THE PAPER")
-    }
-    if(computerSelection=="Scissor" && playerSelection=="Paper"){
-      console.log("RARE L, SCISSOR CUTS THE PAPER")
-    }
-  }
-  function game (){
-    playround()
+  <script>
+  var humanScore = 0;
+  var computerScore = 0;
 
-    for (let i = 0; i < 5; i++){
-      playerSelection = prompt("Rock, Paper, or Scissor?").toLowerCase();
-      computerSelection=getComputerChoice()
-        console.log(playRound(computerSelection , playerSelection)); 
+function getComputerChoice() {
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+  var opt = ["paper", "rock", "scissor"];
+  var zekk = getRandomInt(3);
+  var choice = opt[zekk];
+  return choice;
+}
+
+function getHumanChoice() {
+  let input = prompt("Choose: Rock, Paper, Scissor?");
+  input = input.toLowerCase();
+  if (input === "rock" || input === "paper" || input === "scissor") {
+    return input;
+  } else {
+    return "error only type the name of the game";
+  }
+}
+function playRound(humanchoice, compchoice) {
   
-      }
-    }
-   
 
   
-   
-</script>
+  
+  if (humanchoice === "error") {
+    return "Invalid human choice.";
+  }
 
+ 
+
+  if (humanchoice === "rock" && compchoice === "rock") {
+    return "DRAW NO WINNER";
+  }
+  if (humanchoice === "rock" && compchoice === "scissor") {
+    humanScore++;
+    return `YOU WON THE ROUND ${humanScore} - ${computerScore}`;
+  }
+  if (humanchoice === "rock" && compchoice === "paper") {
+    computerScore++;
+    return `YOU LOST THE ROUND ${humanScore} - ${computerScore}`;
+  }
+  if (humanchoice === "paper" && compchoice === "paper") {
+    return "DRAW NO WINNER";
+  }
+  if (humanchoice === "paper" && compchoice === "rock") {
+    humanScore++;
+    return `YOU WON THE ROUND ${humanScore} - ${computerScore}`;
+  }
+  if (humanchoice === "paper" && compchoice === "scissor") {
+    computerScore++;
+    return `YOU LOST THE ROUND ${humanScore} - ${computerScore}`;
+  }
+  if (humanchoice === "scissor" && compchoice === "scissor") {
+    return "DRAW NO WINNER";
+  }
+  if (humanchoice === "scissor" && compchoice === "paper") {
+    humanScore++;
+    return `YOU WON THE ROUND ${humanScore} - ${computerScore}`;
+  }
+  if (humanchoice === "scissor" && compchoice === "rock") {
+    computerScore++;
+    return `YOU LOST THE ROUND ${humanScore} - ${computerScore}`;
+  } else {
+    return "error";
+  }
+}
+
+function playGame() {
+  for (let i = 0; i != 5; i++) {
+    playRound(getHumanChoice(), getComputerChoice());
+    }
+
+    if (humanScore > computerScore) {
+      return `YOU WON THE GAME! ${humanScore} - ${computerScore}`;
+                
+    }
+    if (computerScore > humanScore) {
+      return `YOU LOST THE GAME! ${humanScore} - ${computerScore}`;
+    }
+    if (computerScore === humanScore) {
+      return `DRAW! ${humanScore} - ${computerScore}`;
+    }
+}
+
+
+
+
+console.log(playGame());
+  
+  
+
+
+
+  </script>
 </body>
 </html>
