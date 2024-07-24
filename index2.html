@@ -8,6 +8,7 @@
   <script>
   var humanScore = 0;
   var computerScore = 0;
+  var userChoice;
 
 function getComputerChoice() {
   function getRandomInt(max) {
@@ -33,49 +34,122 @@ function playRound(humanchoice, compchoice) {
 
   
   
-  if (humanchoice === "error") {
+  if (userChoice === "error") {
     return "Invalid human choice.";
   }
 
  
 
-  if (humanchoice === "rock" && compchoice === "rock") {
+  if (userChoice === "rock" && compchoice === "rock") {
     return "DRAW NO WINNER";
   }
-  if (humanchoice === "rock" && compchoice === "scissor") {
+  if (userChoice === "rock" && compchoice === "scissor") {
     humanScore++;
     return `YOU WON THE ROUND ${humanScore} - ${computerScore}`;
   }
-  if (humanchoice === "rock" && compchoice === "paper") {
+  if (userChoice === "rock" && compchoice === "paper") {
     computerScore++;
     return `YOU LOST THE ROUND ${humanScore} - ${computerScore}`;
   }
-  if (humanchoice === "paper" && compchoice === "paper") {
+  if (userChoice === "paper" && compchoice === "paper") {
     return "DRAW NO WINNER";
   }
-  if (humanchoice === "paper" && compchoice === "rock") {
+  if (userChoice === "paper" && compchoice === "rock") {
     humanScore++;
     return `YOU WON THE ROUND ${humanScore} - ${computerScore}`;
   }
-  if (humanchoice === "paper" && compchoice === "scissor") {
+  if (userChoice === "paper" && compchoice === "scissor") {
     computerScore++;
     return `YOU LOST THE ROUND ${humanScore} - ${computerScore}`;
   }
-  if (humanchoice === "scissor" && compchoice === "scissor") {
+  if (userChoice === "scissor" && compchoice === "scissor") {
     return "DRAW NO WINNER";
   }
-  if (humanchoice === "scissor" && compchoice === "paper") {
+  if (userChoice === "scissor" && compchoice === "paper") {
     humanScore++;
     return `YOU WON THE ROUND ${humanScore} - ${computerScore}`;
   }
-  if (humanchoice === "scissor" && compchoice === "rock") {
+  if (userChoice === "scissor" && compchoice === "rock") {
     computerScore++;
     return `YOU LOST THE ROUND ${humanScore} - ${computerScore}`;
   } else {
     return "error";
   }
 }
+const body = document.querySelector('body')
+const paper = document.createElement('button');
+const rock = document.createElement('button');
+const scissor = document.createElement('button');
+const div = document.createElement('div');
+paper.textContent = 'paper';
+rock.textContent = 'rock';
+scissor.textContent = 'scissor';
 
+
+
+paper.addEventListener('click', () => {
+      
+      userChoice = "paper";
+      console.log(playRound(userChoice,getComputerChoice()));
+      div.innerHTML= `THE SCORE ${humanScore} - ${computerScore}`;
+      if(humanScore==5){
+        alert("YOU WON");
+        window.location.reload();
+        
+      }
+      else if(computerScore==5){
+        alert("YOU LOST");
+        window.location.reload();
+        
+        
+      }
+})
+rock.addEventListener('click', () => {
+      
+      userChoice = "rock";
+      playRound(userChoice,getComputerChoice());
+      div.innerHTML= `THE SCORE ${humanScore} - ${computerScore}`;
+      if(humanScore==5){
+        alert("YOU WON");
+        window.location.reload();
+        
+      }
+      else if(computerScore==5){
+        alert("YOU LOST");
+        window.location.reload();
+        
+        
+      }
+      
+     
+})
+scissor.addEventListener('click', () => {
+      
+      userChoice = "scissor";
+      playRound(userChoice,getComputerChoice());
+      div.innerHTML= `THE SCORE ${humanScore} - ${computerScore}`;
+      if(humanScore==5){
+        alert("YOU WON");
+        window.location.reload();
+        
+      }
+      else if(computerScore==5){
+        alert("YOU LOST");
+        window.location.reload();
+        
+        
+      }
+      
+      
+})
+
+body.append(paper);
+body.append(rock);
+body.append(scissor);
+body.append(div);
+body.append(result);
+
+/*
 function playGame() {
   for (let i = 0; i != 5; i++) {
     playRound(getHumanChoice(), getComputerChoice());
@@ -93,10 +167,8 @@ function playGame() {
     }
 }
 
+*/
 
-
-
-console.log(playGame());
   
   
 
